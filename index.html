@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhishek Dubey | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff6f61;
+            --secondary-color: #ffd700;
+            --bg-color-light: #fff4e6;
+            --bg-color-dark: #121212;
+            --text-color-light: #333;
+            --text-color-dark: #fff;
+            --container-bg-light: #fff;
+            --container-bg-dark: #1e1e1e;
+            --hover-bg-light: linear-gradient(135deg, #ffecd2, #fcb69f);
+            --hover-bg-dark: linear-gradient(135deg, #444, #666);
+            --popup-bg-light: #ffd700;
+            --popup-bg-dark: #444;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            animation: fadeIn 2s;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            font-size: 1.2em;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: var(--container-bg-light);
+            padding: 30px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            animation: slideUp 1s ease-out;
+            transition: transform 0.3s, background-color 0.3s, color 0.3s;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .skills div, .projects div, .interests div {
+            background: var(--hover-bg-light);
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 700px;
+            cursor: pointer;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+            position: relative;
+        }
+
+        .skills div:hover, .projects div:hover, .interests div:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup {
+            display: none;
+            position: absolute;
+            background-color: var(--popup-bg-light);
+            color: #333;
+            padding: 10px;
+            border-radius: 10px;
+            z-index: 10;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+
+        .skills div:hover .popup, .projects div:hover .popup, .interests div:hover .popup {
+            display: block;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .dark-mode {
+            background-color: var(--bg-color-dark);
+            color: var(--text-color-dark);
+        }
+
+        .dark-mode .container {
+            background: var(--container-bg-dark);
+            color: var(--text-color-dark);
+        }
+
+        .dark-mode .skills div, .dark-mode .projects div, .dark-mode .interests div {
+            background: var(--hover-bg-dark);
+            color: var(--text-color-dark);
+        }
+
+        .dark-mode .popup {
+            background-color: var(--popup-bg-dark);
+            color: var(--text-color-dark);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <button class="toggle-btn" onclick="toggleMode()">Toggle Dark/Light Mode</button>
+    <header>
+        <h1>👋 Hi, I'm Abhishek Dubey</h1>
+        <p>Software Engineer | Data Science Enthusiast</p>
+        <nav>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#interests">Interests</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+<section id="skills">
+    <div class="container">
+        <h2>🛠️ Skills</h2>
+        <div>
+            <i class="fas fa-code"></i> <strong>Python:</strong> Data manipulation, automation, REST APIs, and scripting for various data tasks.
+            <div class="popup">Proficient in Python programming with experience in libraries like Pandas, NumPy, and Flask.</div>
+        </div>
+        <div>
+            <i class="fas fa-chart-line"></i> <strong>Data Science:</strong> Data analysis, data visualization, and machine learning model building.
+            <div class="popup">Skilled in data visualization tools like Matplotlib and Seaborn, and model building with Scikit-Learn.</div>
+        </div>
+        <div>
+            <i class="fas fa-database"></i> <strong>Power BI:</strong> Building dashboards, interactive reports, and generating actionable business insights.
+            <div class="popup">Experience in creating dynamic dashboards for data-driven decision making.</div>
+        </div>
+        <div>
+            <i class="fas fa-brain"></i> <strong>Machine Learning:</strong> Supervised and unsupervised learning, regression, and classification.
+            <div class="popup">Implemented models for predictive analytics and clustering tasks.</div>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <div class="container">
+        <h2>💼 Projects</h2>
+        <div>
+            <strong>ShipFare: Shipment Price Prediction</strong>
+            <div class="popup">Machine learning model to predict shipment prices based on distance, weight, and delivery time. Improved accuracy by 15%.</div>
+        </div>
+        <div>
+            <strong>House Price Prediction</strong>
+            <div class="popup">Built a regression model to predict house prices using real estate datasets. Deployed using Flask.</div>
+        </div>
+        <div>
+            <strong>Healthcare Data Analytics (EY)</strong>
+            <div class="popup">Analyzed healthcare data trends with Power BI dashboards to support medical decision-making.</div>
+        </div>
+        <div>
+            <strong>AutoCAD Design Automation</strong>
+            <div class="popup">Automated design processes in AutoCAD with Python scripting to boost productivity.</div>
+        </div>
+    </div>
+</section>
+
+<section id="interests">
+    <div class="container">
+        <h2>🎵 Interests</h2>
+        <div>
+            <i class="fas fa-drum"></i> <strong>Percussion Instruments</strong>
+            <div class="popup">Passionate about playing drums and tabla, focusing on rhythm and coordination.</div>
+        </div>
+        <div>
+            <i class="fas fa-train"></i> <strong>Ferroequinology</strong>
+            <div class="popup">Avid interest in trains, their history, and engineering.</div>
+        </div>
+        <div>
+            <i class="fas fa-comments"></i> <strong>Debating</strong>
+            <div class="popup">Active in debate competitions, enhancing public speaking and critical thinking skills.</div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="container">
+        <h2>📬 Contact Me</h2>
+        <p>Email: <a href="mailto:abhikal26@gmail.com">abhikal26@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/abhishek-dubey-12a169239" target="_blank">abhishek-dubey-12a169239</a></p>
+        <p>Phone: 7709711998</p>
+    </div>
+</section>
+
+<script>
+    function toggleMode() {
+    document.body.classList.toggle("dark-mode");
+}
+
+</script>
+<footer>
+    &copy; 2024 Abhishek Dubey | All Rights Reserved
+</footer>
